@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<script src="js/vue.js"></script>
+	<script src="js/vue-resource.js"></script>
+	<script src="js/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+<div class="wrap" id="app">
+	<div class="header">
+		<span>{{header}}</span>
+		<em>-</em>
+		<em>+</em>
+	</div>
+	<div class="main">
+		<div class="main-r">
+			<input v-model="newItem" @keyup.enter="addItems" class="addItemsInt"/>
+			<h1>未完成的计划</h1>
+			<ul class="listWrap">
+				<li v-for="(item,index) in items" class="clearfix" v-bind:class="{emphasis: item.isEmphasis}">
+					<div class="listIndex">{{ ("000"+index).slice(-2) }}</div>
+        			<div class="itemDetails">{{item.details}}</div>
+					<button class="markBtn" @click="toggleMark(item)">设置</button>
+					<div class="markList" v-bind:class="{current: item.markShow}">
+						<span v-for="(markList,markindex) in item.markLists" @click="markControl({markindex},item,{index})">{{markList.text}}</span>
+					</div>
+    			</li>
+			</ul>
+			<div class="completedList" v-bind:class="{finished: finished}">
+				<h1>已完成的计划</h1>
+				<ul class="listWrap">
+					<li v-for="(item_f,index) in finishedList">
+						<div class="listIndex">{{ ("000"+index).slice(-2) }}</div>
+			        	<div class="itemDetails">{{item_f.details}}</div>
+						<button class="markBtn" @click="toggleMark(item_f)">设置</button>
+						<div class="markList" v-bind:class="{current: item_f.markShow}">
+							<span v-for="(f_markList,markindex) in item_f.markLists" @click="markControl({markindex},item_f,{index},f_markList)">
+							{{f_markList.text}}</span>
+						</div>
+			    	</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="js/index.js"></script>
+</body>
+</html>

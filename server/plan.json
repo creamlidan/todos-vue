@@ -1,0 +1,13 @@
+{  
+    "root": [  
+        {  
+           "workDay": "1",  
+           "details": "ZT4",  
+           "state": " 未完成"
+        },  
+        {  
+            "workDay": "2",  
+            "details": "ZT4213",  
+            "state": " 已完成" 
+         }]  
+}  
